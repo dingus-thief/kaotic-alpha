@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:57ed30af587e7b2effd5dfce9837e957$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<TextureAtlas imagePath="Running.png" width="512" height="1024">
+    <sprite n="_0000_running-27" x="2" y="2" w="112" h="133"/>
+    <sprite n="_0001_running-26" x="116" y="2" w="109" h="135"/>
+    <sprite n="_0002_running-25" x="227" y="2" w="106" h="135"/>
+    <sprite n="_0003_running-24" x="335" y="2" w="104" h="135"/>
+    <sprite n="_0004_running-23" x="2" y="139" w="98" h="135"/>
+    <sprite n="_0005_running-22" x="102" y="139" w="94" h="135"/>
+    <sprite n="_0006_running-21" x="198" y="139" w="98" h="132"/>
+    <sprite n="_0007_running-20" x="298" y="139" w="104" h="131"/>
+    <sprite n="_0008_running-19" x="404" y="139" w="103" h="130"/>
+    <sprite n="_0009_running-18" x="2" y="276" w="102" h="129"/>
+    <sprite n="_0010_running-17" x="106" y="276" w="110" h="128"/>
+    <sprite n="_0011_running-16" x="218" y="276" w="118" h="127"/>
+    <sprite n="_0012_running-15" x="338" y="276" w="116" h="126"/>
+    <sprite n="_0013_running-14" x="2" y="407" w="108" h="130"/>
+    <sprite n="_0014_running-13" x="112" y="407" w="102" h="134"/>
+    <sprite n="_0015_running-12" x="216" y="407" w="99" h="133"/>
+    <sprite n="_0016_running-11" x="317" y="407" w="95" h="133"/>
+    <sprite n="_0017_running-10" x="414" y="407" w="95" h="135"/>
+    <sprite n="_0018_running-9" x="2" y="544" w="96" h="134"/>
+    <sprite n="_0019_running-8" x="100" y="544" w="100" h="134"/>
+    <sprite n="_0020_running-7" x="202" y="544" w="102" h="132"/>
+    <sprite n="_0021_running-6" x="306" y="544" w="103" h="133"/>
+    <sprite n="_0022_running-5" x="2" y="680" w="106" h="134"/>
+    <sprite n="_0023_running-4" x="110" y="680" w="113" h="132"/>
+    <sprite n="_0024_running-3" x="225" y="680" w="118" h="132"/>
+    <sprite n="_0025_running-2" x="345" y="680" w="118" h="130"/>
+    <sprite n="_0026_running-1" x="2" y="816" w="119" h="129"/>
+</TextureAtlas>
