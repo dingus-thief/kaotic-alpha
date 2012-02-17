@@ -10,7 +10,7 @@
 namespace Kaotic_Alpha
 {
 	class Comp_Animation
-		: public Kaotic_Alpha::Component
+		: public Component
 	{
 	public:
 		Comp_Animation(Kaotic_Alpha::Comp_Renderable* renderable)
@@ -18,65 +18,43 @@ namespace Kaotic_Alpha
 		{}
 		~Comp_Animation()
 		{
-			ClearAnimatedSprites();
-		}
-
-		//add sprite to sprite list
-		void AddAnimatedSprite(Kaotic_Alpha::AnimatedSprite* sprite){
-			m_Sprites.push_back(sprite);
-		}
-		
-		//erase sprite from sprite list
-		void RemoveAnimatedSprite(Kaotic_Alpha::AnimatedSprite* sprite)
-		{
-			for(std::vector<Kaotic_Alpha::AnimatedSprite*>::iterator it = m_Sprites.begin(); it != m_Sprites.end(); ++it)
+			if(m_AnimatedSprite != NULL)
 			{
-				if((*it) == sprite)
-				{
-					delete *it;
-					m_Sprites.erase(it);
-					break;
-				}
+				delete m_AnimatedSprite;
+				m_AnimatedSprite = NULL;
 			}
 		}
 
-		void ClearAnimatedSprites()
-		{
-			for(std::vector<Kaotic_Alpha::AnimatedSprite*>::iterator it = m_Sprites.begin(); it != m_Sprites.end(); ++it){
-				delete *it;
-			}
-			m_Sprites.clear();
+		//set the current animated sprite
+		void SetAnimatedSprite(Kaotic_Alpha::AnimatedSprite* sprite){
+			m_AnimatedSprite = sprite;
 		}
 
-		//Get an animated sprite based on the sprite's name, returns null if sprite is not found
-		Kaotic_Alpha::AnimatedSprite* GetAnimatedSprite(std::string spritename)
+		//get the current animated sprite
+		Kaotic_Alpha::AnimatedSprite* GetAnimatedSprite()
 		{
-			//search for animated sprite
-			for(std::vector<Kaotic_Alpha::AnimatedSprite*>::iterator it = m_Sprites.begin(); it != m_Sprites.end(); ++it){
-				if( (*it)->m_Name == spritename){
-					return *it;
-				}
+			if(m_AnimatedSprite != NULL){
+				return m_AnimatedSprite;
 			}
 
-			WriteLog << spritename << " not found. " << std::endl;
+			WriteLog << "No Animated Sprite found. " << std::endl;
 			return NULL;
 		}
 
-		//update all sprites, then queue them up to be rendered
-		void Update()
+		//update the current animated sprite, then add it to the renderering queue
+		void Update(float deltaTime, float posX, float posY)
 		{
-			for(std::vector<Kaotic_Alpha::AnimatedSprite*>::iterator it = m_Sprites.begin(); it != m_Sprites.end(); ++it){
-				(*it)->Update();
-				sf::Sprite sprite;
-				if((*it)->GetSprite(sprite)){
-					m_comp_RenderableRef->AddSprite(sprite);
-				}		
-			}
+			m_AnimatedSprite->Update(deltaTime);
+			sf::Sprite sprite;
+			if(m_AnimatedSprite->GetSprite(sprite)){
+				sprite.SetPosition(posX, posY);
+				m_comp_RenderableRef->AddSprite(sprite);
+			}	
 		}
 
 	private:
-		std::vector<Kaotic_Alpha::AnimatedSprite*> m_Sprites;
-		Kaotic_Alpha::Comp_Renderable* m_comp_RenderableRef;
+		Kaotic_Alpha::AnimatedSprite* 	m_AnimatedSprite;
+		Kaotic_Alpha::Comp_Renderable*	m_comp_RenderableRef;
 	};
 }
 

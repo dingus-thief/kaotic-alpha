@@ -3,8 +3,9 @@
 
 namespace Kaotic_Alpha
 {
-	struct Vector2
+	class Vector2
 	{
+	public:
 		Vector2(float x, float y)
 			: X(x), Y(y)
 		{}
@@ -12,8 +13,21 @@ namespace Kaotic_Alpha
 			:X(0), Y(0)
 		{}
 
-		float X;
-		float Y;
+		float X,Y;
+		Vector2 operator+(const Vector2& vec)
+		{
+			Vector2 newVector;
+			newVector.X = X + vec.X;
+			newVector.Y = Y + vec.Y;
+			return newVector;
+		}
+		Vector2 operator-(const Vector2& vec)
+		{
+			Vector2 newVector;
+			newVector.X = X - vec.X;
+			newVector.Y = Y - vec.Y;
+			return newVector;
+		}
 	};
 }
 

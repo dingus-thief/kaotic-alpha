@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:a0f2af05c2964e1612a1bf88fefdcaf4$ -->
+<!-- $TexturePacker:SmartUpdate:b76db3247e4168019a47ad26a040a8c6$ -->
 <!--Format:
 n  => name of the sprite
 x  => sprite x pos in texture
@@ -13,27 +13,27 @@ oW => sprite's original width (only available if trimmed)
 oH => sprite's original height (only available if trimmed)
 r => 'y' only set if sprite is rotated
 -->
-<TextureAtlas imagePath="Idle.png" width="1024" height="512">
-    <sprite n="Braid_0000_idle-22" x="2" y="2" w="81" h="137"/>
-    <sprite n="Braid_0001_idle-21" x="85" y="2" w="81" h="137"/>
-    <sprite n="Braid_0002_idle-20" x="168" y="2" w="81" h="137"/>
-    <sprite n="Braid_0003_idle-19" x="251" y="2" w="81" h="137"/>
-    <sprite n="Braid_0004_idle-18" x="334" y="2" w="81" h="138"/>
-    <sprite n="Braid_0005_idle-17" x="417" y="2" w="81" h="138"/>
-    <sprite n="Braid_0006_idle-16" x="500" y="2" w="81" h="138"/>
-    <sprite n="Braid_0007_idle-15" x="583" y="2" w="81" h="138"/>
-    <sprite n="Braid_0008_idle-14" x="666" y="2" w="81" h="138"/>
-    <sprite n="Braid_0009_idle-13" x="749" y="2" w="81" h="139"/>
-    <sprite n="Braid_0010_idle-12" x="832" y="2" w="81" h="139"/>
-    <sprite n="Braid_0011_idle-11" x="915" y="2" w="81" h="139"/>
-    <sprite n="Braid_0012_idle-10" x="2" y="143" w="81" h="139"/>
-    <sprite n="Braid_0013_idle-9" x="85" y="143" w="81" h="139"/>
-    <sprite n="Braid_0014_idle-8" x="168" y="143" w="81" h="138"/>
-    <sprite n="Braid_0015_idle-7" x="251" y="143" w="81" h="138"/>
-    <sprite n="Braid_0016_idle-6" x="334" y="143" w="81" h="138"/>
-    <sprite n="Braid_0017_idle-5" x="417" y="143" w="81" h="138"/>
-    <sprite n="Braid_0018_idle-4" x="500" y="143" w="81" h="138"/>
-    <sprite n="Braid_0019_idle-3" x="583" y="143" w="81" h="137"/>
-    <sprite n="Braid_0020_idle-2" x="666" y="143" w="81" h="137"/>
-    <sprite n="Braid_0021_idle-1" x="749" y="143" w="81" h="137"/>
+<TextureAtlas imagePath="Idle.png" width="1024" height="1024">
+    <sprite n="Braid_0000_idle-22" x="2" y="2" w="200" h="200"/>
+    <sprite n="Braid_0001_idle-21" x="204" y="2" w="200" h="200"/>
+    <sprite n="Braid_0002_idle-20" x="406" y="2" w="200" h="200"/>
+    <sprite n="Braid_0003_idle-19" x="608" y="2" w="200" h="200"/>
+    <sprite n="Braid_0004_idle-18" x="810" y="2" w="200" h="200"/>
+    <sprite n="Braid_0005_idle-17" x="2" y="204" w="200" h="200"/>
+    <sprite n="Braid_0006_idle-16" x="204" y="204" w="200" h="200"/>
+    <sprite n="Braid_0007_idle-15" x="406" y="204" w="200" h="200"/>
+    <sprite n="Braid_0008_idle-14" x="608" y="204" w="200" h="200"/>
+    <sprite n="Braid_0009_idle-13" x="810" y="204" w="200" h="200"/>
+    <sprite n="Braid_0010_idle-12" x="2" y="406" w="200" h="200"/>
+    <sprite n="Braid_0011_idle-11" x="204" y="406" w="200" h="200"/>
+    <sprite n="Braid_0012_idle-10" x="406" y="406" w="200" h="200"/>
+    <sprite n="Braid_0013_idle-9" x="608" y="406" w="200" h="200"/>
+    <sprite n="Braid_0014_idle-8" x="810" y="406" w="200" h="200"/>
+    <sprite n="Braid_0015_idle-7" x="2" y="608" w="200" h="200"/>
+    <sprite n="Braid_0016_idle-6" x="204" y="608" w="200" h="200"/>
+    <sprite n="Braid_0017_idle-5" x="406" y="608" w="200" h="200"/>
+    <sprite n="Braid_0018_idle-4" x="608" y="608" w="200" h="200"/>
+    <sprite n="Braid_0019_idle-3" x="810" y="608" w="200" h="200"/>
+    <sprite n="Braid_0020_idle-2" x="2" y="810" w="200" h="200"/>
+    <sprite n="Braid_0021_idle-1" x="204" y="810" w="200" h="200"/>
 </TextureAtlas>

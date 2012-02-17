@@ -18,8 +18,8 @@ namespace Kaotic_Alpha
 	private:
 		int GetUID() const { return next_UID++; }
 
-		std::map<int, Kaotic_Alpha::GameObject*> objectMap;
-		static ObjectFactory* pInstance;
+		std::map<int, Kaotic_Alpha::GameObject*> m_ObjectMap;
+		static ObjectFactory* p_Instance;
 		ObjectFactory();
 		static int next_UID;
 	};

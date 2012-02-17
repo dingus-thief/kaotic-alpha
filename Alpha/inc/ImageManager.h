@@ -20,7 +20,7 @@ namespace Kaotic_Alpha
 	private:
 		ImageManager(){}
 		std::map<std::string, sf::Image*> m_ImageMap;
-		static Kaotic_Alpha::ImageManager* pInstance;
+		static Kaotic_Alpha::ImageManager* p_Instance;
 	};
 }
 

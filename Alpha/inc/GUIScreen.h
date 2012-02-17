@@ -8,7 +8,7 @@ namespace Kaotic_Alpha
 	class GUIScreen
 	{
 	public:
-		virtual void Update(){}
+		virtual void Update(float deltaTime){}
 		virtual void Render(){}
 
 		GUIScreen(std::string name)

@@ -5,6 +5,8 @@
 
 namespace Kaotic_Alpha
 {
+	class GameObject;
+	
 	class BoundingBox
 	{
 	public:
@@ -14,7 +16,7 @@ namespace Kaotic_Alpha
 		BoundingBox(float x, float y)
 			: m_Position(x, y)
 		{}
-		BoundingBox(float x, float y, int width, int height)
+		BoundingBox(float x, float y, float width, float height)
 			: m_Position(x, y), m_Width(width), m_Height(height)
 		{}
 
@@ -29,16 +31,17 @@ namespace Kaotic_Alpha
 
 			return true; 
 		}
-		void SetWidth(unsigned int value) { m_Width = value; }
-		void SetHeight(unsigned int value) { m_Height = value; }
+		void SetWidth(float value) { m_Width = value; }
+		void SetHeight(float value) { m_Height = value; }
+		void SetPosition(Vector2 location) { m_Position = location; }
 
 		Vector2 GetPosition() const { return m_Position; }
-		unsigned int GetHeight() const { return m_Height; }
-		unsigned int GetWidth() const { return m_Width; }
+		float GetHeight() const { return m_Height; }
+		float GetWidth() const { return m_Width; }
 
 	private:
-		unsigned int m_Width;
-		unsigned int m_Height;
+		float m_Width;
+		float m_Height;
 		Vector2 m_Position;
 	};
 }

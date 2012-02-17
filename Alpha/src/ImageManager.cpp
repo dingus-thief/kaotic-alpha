@@ -1,5 +1,5 @@
 #include "ImageManager.h"
-Kaotic_Alpha::ImageManager* Kaotic_Alpha::ImageManager::pInstance = NULL;
+Kaotic_Alpha::ImageManager* Kaotic_Alpha::ImageManager::p_Instance = NULL;
 
 void Kaotic_Alpha::ImageManager::Shutdown()
 {
@@ -47,8 +47,8 @@ sf::Image& Kaotic_Alpha::ImageManager::GetImage(std::string filename)
 
 Kaotic_Alpha::ImageManager* Kaotic_Alpha::ImageManager::GetSingleton()
 {
-  if(pInstance == NULL){
-	  pInstance = new Kaotic_Alpha::ImageManager();
+  if(p_Instance == NULL){
+	  p_Instance = new Kaotic_Alpha::ImageManager();
   }
-  return pInstance;
+  return p_Instance;
 }
