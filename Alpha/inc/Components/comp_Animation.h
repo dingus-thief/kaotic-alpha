@@ -45,10 +45,10 @@ namespace Kaotic_Alpha
 		void Update(float deltaTime, float posX, float posY)
 		{
 			m_AnimatedSprite->Update(deltaTime);
-			sf::Sprite sprite;
-			if(m_AnimatedSprite->GetSprite(sprite)){
-				sprite.SetPosition(posX, posY);
-				m_comp_RenderableRef->AddSprite(sprite);
+			sf::Sprite* sprite = m_AnimatedSprite->GetSprite();
+			if(sprite != NULL){
+				sprite->SetPosition(posX, posY);
+				m_comp_RenderableRef->AddSprite(*sprite);
 			}	
 		}
 

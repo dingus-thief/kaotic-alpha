@@ -73,8 +73,12 @@
     <ClInclude Include="inc\BoundingBox.h" />
     <ClInclude Include="inc\Camera.h" />
     <ClInclude Include="inc\CollisionManager.h" />
+    <ClInclude Include="inc\Components\Component.h" />
     <ClInclude Include="inc\Components\comp_Animation.h" />
     <ClInclude Include="inc\Components\comp_Collidable.h" />
+    <ClInclude Include="inc\Components\comp_Health.h" />
+    <ClInclude Include="inc\Components\comp_Input.h" />
+    <ClInclude Include="inc\Components\comp_Movable.h" />
     <ClInclude Include="inc\Components\comp_Physics.h" />
     <ClInclude Include="inc\Components\comp_Renderable.h" />
     <ClInclude Include="inc\Game.h" />
@@ -95,10 +99,6 @@
     <ClInclude Include="inc\TinyXML\tinyxml.h" />
     <ClInclude Include="inc\Vector2.h" />
     <ClInclude Include="inc\XMLParser.h" />
-    <ClInclude Include="src\Components\Component.h" />
-    <ClInclude Include="src\Components\comp_Health.h" />
-    <ClInclude Include="src\Components\comp_Input.h" />
-    <ClInclude Include="src\Components\comp_Movable.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CollisionManager.cpp" />
