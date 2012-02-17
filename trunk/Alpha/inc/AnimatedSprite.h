@@ -88,24 +88,25 @@ namespace Kaotic_Alpha
 
 		Vector2 GetSpriteSize() 
 		{
-			sf::Sprite temp;
-			if(GetSprite(temp))
-				return Vector2(temp.GetSize().x, temp.GetSize().y);
+			sf::Sprite* temp = GetSprite();
+			if(temp != NULL)
+				return Vector2(temp->GetSize().x, temp->GetSize().y);
 			else
 				return Vector2(0,0);
 		}
 
 		//get the specific sprite that should be drawn to screen, based on the animation currently playing
-		bool GetSprite(sf::Sprite& sprite) const { 
+		sf::Sprite* GetSprite() const { 
+			sf::Sprite* sprite;
 			if(currentAnimation == -1)
-				return false;
+				return NULL;
 			else{
 				sprite = m_SpriteAnimations[currentAnimation]->GetSprite(frame);
-				sprite.SetPosition(posX, posY);
-				sprite.SetScale(scaleX, scaleY);
-				sprite.FlipX(flipSprite);
+				sprite->SetPosition(posX, posY);
+				sprite->SetScale(scaleX, scaleY);
+				sprite->FlipX(flipSprite);
+				return sprite;
 			}
-			return true;
 		}
 
 		void SetPosition(float x, float y)

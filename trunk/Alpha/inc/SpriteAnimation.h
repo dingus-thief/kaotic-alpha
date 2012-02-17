@@ -21,7 +21,7 @@ namespace Kaotic_Alpha
 		//load the animation in the form of a sprite sheet and create the clips for it
 		void LoadAnimation()
 		{
-			m_Sprite = sf::Sprite(ImageManager::GetSingleton()->GetImage(m_Name));
+			m_Sprite = new sf::Sprite(ImageManager::GetSingleton()->GetImage(m_Name));
 			SetClips();
 			m_NumFrames = m_Clips.size();
 		}
@@ -47,9 +47,9 @@ namespace Kaotic_Alpha
 		}		
 
 		//based on the frame of the animation, return a sprite with just that clip
-		sf::Sprite& GetSprite(int frame)  
+		sf::Sprite* GetSprite(int frame)  
 		{ 
-			m_Sprite.SetSubRect(m_Clips[frame]);
+			m_Sprite->SetSubRect(m_Clips[frame]);
 			return m_Sprite;
 		}
 
@@ -60,7 +60,7 @@ namespace Kaotic_Alpha
 	private:
 		int m_NumFrames;
 		std::vector<sf::IntRect> m_Clips;
-		sf::Sprite m_Sprite;
+		sf::Sprite* m_Sprite;
 	};
 }
 #endif

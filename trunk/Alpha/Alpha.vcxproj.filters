@@ -39,24 +39,6 @@
     <ClInclude Include="inc\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\Components\comp_Collidable.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\Components\comp_Renderable.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Components\Component.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Components\comp_Health.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Components\comp_Movable.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Components\comp_Input.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="inc\GUIManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -78,9 +60,6 @@
     <ClInclude Include="inc\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\Components\comp_Animation.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="inc\AnimatedSprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -99,9 +78,6 @@
     <ClInclude Include="inc\GameMessage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\Components\comp_Physics.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="inc\MessageSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -113,6 +89,30 @@
     </ClInclude>
     <ClInclude Include="inc\LevelFloor.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Components\comp_Animation.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Components\comp_Collidable.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Components\comp_Health.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Components\comp_Input.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Components\comp_Movable.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Components\comp_Physics.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Components\comp_Renderable.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Components\Component.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
