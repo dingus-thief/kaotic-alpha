@@ -18,7 +18,7 @@ namespace Kaotic_Alpha
 		void PushScreen(Kaotic_Alpha::GUIScreen* newScreen);
 		void PopScreen();
 		void ClearScreens();
-		void UpdateScreens();
+		void UpdateScreens(float deltaTime);
 
 		static Kaotic_Alpha::GUIManager* GetSingleton();
 		void Shutdown();

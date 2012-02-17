@@ -1,11 +1,12 @@
 #ifndef COMP_RENDERABLE
 #define COMP_RENDERABLE
 
-#include "Components/Component.h"
-#include "GameLog.h"
-#include "Vector2.h"
 #include <SFML/Graphics.hpp>
 #include <vector>
+ 
+#include "GameLog.h"
+#include "Vector2.h"
+#include "Components/Component.h"
 
 namespace Kaotic_Alpha
 {
@@ -17,7 +18,7 @@ namespace Kaotic_Alpha
 			: m_AppRef(app)
 		{}
 
-		void Update()
+		void Update(float deltaTime)
 		{
 		}
 		void AddSprite(sf::Sprite sprite)
@@ -28,6 +29,9 @@ namespace Kaotic_Alpha
 		{
 			for(std::vector<sf::Sprite>::iterator it = m_Sprites.begin(); it != m_Sprites.end(); ++it){
 				sf::Sprite sprite = (*it);
+				//translate sprites position from world space to local space
+				Kaotic_Alpha::Vector2 pos(sprite.GetPosition().x, sprite.GetPosition().y);
+				//Kaotic_Alpha::Vector2 translatedPosition GetTranslatedPosition(pos);
 				m_AppRef->Draw(sprite);
 			}
 			m_Sprites.clear();

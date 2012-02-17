@@ -4,13 +4,12 @@
 #include <string>
 #include <vector>
 #include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
+
 #include "ImageManager.h"
 #include "SpriteAnimation.h"
 #include "GameLog.h"
-#include "Timer.h"
 
-const float ANIMATION_FPS = 20.0f;
+const float ANIMATION_FPS = 40.0;
 
 namespace Kaotic_Alpha
 {
@@ -20,11 +19,9 @@ namespace Kaotic_Alpha
 		AnimatedSprite(std::string spritename)
 			: m_Name(spritename)
 		{
-			timer.Start();
 			currentAnimation = -1;
 			frame = 0;
 			frameCounter = 0;
-			prevAnimTime = timer.GetElapsedTime();
 			flipSprite = false;
 			posX = 0;
 			posY = 0;
@@ -36,11 +33,14 @@ namespace Kaotic_Alpha
 			ClearAllAnimations();
 		}
 
+		//add a specific animation to the animated sprite
 		void AddAnimation(std::string animationName)
 		{
 			Kaotic_Alpha::SpriteAnimation* animation = new Kaotic_Alpha::SpriteAnimation(animationName);
 			m_SpriteAnimations.push_back(animation);
 		}
+		
+		//remove a specific animation from the animated sprite
 		void RemoveAnimation(std::string animationName)
 		{
 			for(std::vector<Kaotic_Alpha::SpriteAnimation*>::iterator it = m_SpriteAnimations.begin(); it != m_SpriteAnimations.end(); ++it){
@@ -52,6 +52,8 @@ namespace Kaotic_Alpha
 				}
 			}
 		}
+		
+		//clear all animations from the animated sprite
 		void ClearAllAnimations()
 		{
 			for(std::vector<Kaotic_Alpha::SpriteAnimation*>::iterator it = m_SpriteAnimations.begin(); it != m_SpriteAnimations.end(); ++it){
@@ -59,7 +61,8 @@ namespace Kaotic_Alpha
 			}
 			m_SpriteAnimations.clear();
 		}
-		//attempt to play animation
+
+		//set a specific animation as the current animation to play
 		void PlayAnimation(std::string animationName)
 		{
 			currentAnimation = -1;
@@ -68,22 +71,31 @@ namespace Kaotic_Alpha
 					currentAnimation = i;
 				}
 			}
-
 			if(currentAnimation == -1)
 				WriteLog << "Animation (\"" << animationName << "\") could not be fould." << std::endl;
 		}
 
-		void Update()
+		//if there is an active animation, update it 
+		void Update(float deltaTime)
 		{
 			if(currentAnimation != -1)
 			{
 				//throttle animation frame rate so that program can run as fast as possible and sprites won't run any faster
-				float deltaTime = timer.GetElapsedTime() - prevAnimTime;	
-				prevAnimTime = timer.GetElapsedTime();
-				frameCounter += (deltaTime * ANIMATION_FPS)/1000;
+				frameCounter += (deltaTime * ANIMATION_FPS);
 				frame = static_cast<int>(frameCounter) % m_SpriteAnimations[currentAnimation]->GetNumFrames();
 			}
 		}
+
+		Vector2 GetSpriteSize() 
+		{
+			sf::Sprite temp;
+			if(GetSprite(temp))
+				return Vector2(temp.GetSize().x, temp.GetSize().y);
+			else
+				return Vector2(0,0);
+		}
+
+		//get the specific sprite that should be drawn to screen, based on the animation currently playing
 		bool GetSprite(sf::Sprite& sprite) const { 
 			if(currentAnimation == -1)
 				return false;
@@ -95,6 +107,7 @@ namespace Kaotic_Alpha
 			}
 			return true;
 		}
+
 		void SetPosition(float x, float y)
 		{
 			posX = x;
@@ -116,6 +129,7 @@ namespace Kaotic_Alpha
 		}
 		
 		std::string m_Name;
+
 	private:
 		std::vector<Kaotic_Alpha::SpriteAnimation*> m_SpriteAnimations;
 		float frameCounter;
@@ -123,9 +137,7 @@ namespace Kaotic_Alpha
 		int currentAnimation;
 		float posX, posY;
 		float scaleX, scaleY;
-		float prevAnimTime;
 		bool flipSprite;
-		Kaotic_Alpha::Timer timer;
 	};
 }
 

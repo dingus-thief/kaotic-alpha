@@ -40,11 +40,11 @@ void Kaotic_Alpha::GUIManager::PopScreen()
 	m_Screens.pop_back();
 }
 
-void Kaotic_Alpha::GUIManager::UpdateScreens()
+void Kaotic_Alpha::GUIManager::UpdateScreens(float deltaTime)
 {
 	for(std::vector<Kaotic_Alpha::GUIScreen*>::iterator it = m_Screens.begin(); it != m_Screens.end(); ++it){
 		if(it == m_Screens.end()-1){
-			(*it)->Update();
+			(*it)->Update(deltaTime);
 		}
 
 		(*it)->Render();

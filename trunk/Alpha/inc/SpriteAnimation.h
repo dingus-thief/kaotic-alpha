@@ -8,6 +8,7 @@
 
 namespace Kaotic_Alpha
 {
+	//Animation that an animated sprite can use
 	class SpriteAnimation
 	{
 	public:
@@ -17,7 +18,7 @@ namespace Kaotic_Alpha
 			LoadAnimation();
 		}
 
-		//load the sprite sheet and create the clips for it
+		//load the animation in the form of a sprite sheet and create the clips for it
 		void LoadAnimation()
 		{
 			m_Sprite = sf::Sprite(ImageManager::GetSingleton()->GetImage(m_Name));
@@ -25,7 +26,7 @@ namespace Kaotic_Alpha
 			m_NumFrames = m_Clips.size();
 		}
 
-		//this should load from an xml file, but temp for now
+		//load the clips from an XML file, this file is the same as the image name, but remove the extension and an xml extension
 		void SetClips(){
 			std::string truncname;
 			truncname = m_Name.substr(0, m_Name.find_last_of("."));

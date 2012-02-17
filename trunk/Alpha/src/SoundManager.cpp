@@ -1,36 +1,60 @@
 #include "SoundManager.h"
 #include "GameLog.h"
 
-Kaotic_Alpha::SoundManager* Kaotic_Alpha::SoundManager::pInstance = NULL;
+Kaotic_Alpha::SoundManager* Kaotic_Alpha::SoundManager::p_Instance = NULL;
 
 Kaotic_Alpha::SoundManager* Kaotic_Alpha::SoundManager::GetSingleton()
 {
-  if(pInstance == NULL){
-    pInstance = new SoundManager();
+  if(p_Instance == NULL){
+    p_Instance = new SoundManager();
   }
-  return pInstance;
+  return p_Instance;
 }
 
 void Kaotic_Alpha::SoundManager::PlaySoundFX(std::string filename)
 {
-	try{}
-	catch(...)
+	unsigned int SampleRate = m_Buffer.GetSampleRate();
+	unsigned int Channels   = m_Buffer.GetChannelsCount();
+
+	if(!m_Buffer.LoadFromFile(filename))
 	{
 		WriteLog << "Could not play Sound Effect(\"" << filename << "\")" << std::endl;
+		return;
 	}
+
+	m_Sound.SetBuffer(m_Buffer); 
+	m_Sound.Play();
 }
 
+//stop current music
+void Kaotic_Alpha::SoundManager::StopMusic()
+{
+	m_Music.Stop();
+}
+
+//do not start new music unless previous music has been stopped
 void Kaotic_Alpha::SoundManager::PlayMusic(std::string filename)
 {
-	try{}
-	catch(...)
+	if(m_Music.GetStatus() != sf::Music::Playing)
 	{
-		WriteLog << "Could not play Music(\"" << filename << "\")" << std::endl;
+		if (!m_Music.OpenFromFile(filename))
+		{
+			WriteLog << "Could not play Music(\"" << filename << "\")" << std::endl;
+			return;
+		}
+
+		m_Music.OpenFromFile(filename);
+		m_Music.Play();
 	}
 }
 
 void Kaotic_Alpha::SoundManager::Shutdown()
 {
-	delete pInstance;
-	pInstance = NULL;
+	delete p_Instance;
+	p_Instance = NULL;
+}
+
+void Kaotic_Alpha::SoundManager::Startup()
+{
+
 }

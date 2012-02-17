@@ -72,20 +72,25 @@
     <ClInclude Include="inc\AnimatedSprite.h" />
     <ClInclude Include="inc\BoundingBox.h" />
     <ClInclude Include="inc\Camera.h" />
+    <ClInclude Include="inc\CollisionManager.h" />
     <ClInclude Include="inc\Components\comp_Animation.h" />
     <ClInclude Include="inc\Components\comp_Collidable.h" />
+    <ClInclude Include="inc\Components\comp_Physics.h" />
     <ClInclude Include="inc\Components\comp_Renderable.h" />
     <ClInclude Include="inc\Game.h" />
     <ClInclude Include="inc\GameLog.h" />
+    <ClInclude Include="inc\GameMessage.h" />
     <ClInclude Include="inc\GameObject.h" />
     <ClInclude Include="inc\GUIManager.h" />
     <ClInclude Include="inc\GUIScreen.h" />
     <ClInclude Include="inc\ImageManager.h" />
+    <ClInclude Include="inc\LevelFloor.h" />
+    <ClInclude Include="inc\MessageListener.h" />
+    <ClInclude Include="inc\MessageSystem.h" />
     <ClInclude Include="inc\ObjectFactory.h" />
     <ClInclude Include="inc\Player.h" />
     <ClInclude Include="inc\SoundManager.h" />
     <ClInclude Include="inc\SpriteAnimation.h" />
-    <ClInclude Include="inc\Timer.h" />
     <ClInclude Include="inc\TinyXML\tinystr.h" />
     <ClInclude Include="inc\TinyXML\tinyxml.h" />
     <ClInclude Include="inc\Vector2.h" />
@@ -96,14 +101,16 @@
     <ClInclude Include="src\Components\comp_Movable.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\CollisionManager.cpp" />
+    <ClCompile Include="src\comp_Collidable.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\GUIManager.cpp" />
     <ClCompile Include="src\ImageManager.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MessageSystem.cpp" />
     <ClCompile Include="src\ObjectFactory.cpp" />
     <ClCompile Include="src\SoundManager.cpp" />
-    <ClCompile Include="src\Timer.cpp" />
     <ClCompile Include="src\TinyXML\tinystr.cpp" />
     <ClCompile Include="src\TinyXML\tinyxml.cpp" />
     <ClCompile Include="src\TinyXML\tinyxmlerror.cpp" />
