@@ -71,9 +71,9 @@ void Kaotic_Alpha::GameObject::UpdateMovement(float deltaTime)
 	}
 }
 
-void Kaotic_Alpha::GameObject::Render(float deltaTime)
+void Kaotic_Alpha::GameObject::Render(float deltaTime, Camera* camera)
 {
 	if(m_RenderComp){
-		m_RenderComp->Render();
+		m_RenderComp->Render(camera);
 	}
 }

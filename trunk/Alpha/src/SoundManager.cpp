@@ -37,13 +37,14 @@ void Kaotic_Alpha::SoundManager::PlayMusic(std::string filename)
 {
 	if(m_Music.GetStatus() != sf::Music::Playing)
 	{
-		if (!m_Music.OpenFromFile(filename))
+		std::string filepath = "../../media/music/" + filename;
+		if (!m_Music.OpenFromFile(filepath))
 		{
 			WriteLog << "Could not play Music(\"" << filename << "\")" << std::endl;
 			return;
 		}
 
-		m_Music.OpenFromFile(filename);
+		m_Music.OpenFromFile(filepath);
 		m_Music.Play();
 	}
 }

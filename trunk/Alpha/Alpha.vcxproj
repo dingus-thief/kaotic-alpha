@@ -42,6 +42,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IntDir>obj\$(Configuration)\</IntDir>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>bin\$(Configuration)\</OutDir>
+    <IntDir>obj\$(Configuration)\</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -61,11 +65,15 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>inc;C:\SFML\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SFML_DYNAMIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\SFML\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-system.lib;sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -85,14 +93,20 @@
     <ClInclude Include="inc\GameLog.h" />
     <ClInclude Include="inc\GameMessage.h" />
     <ClInclude Include="inc\GameObject.h" />
+    <ClInclude Include="inc\GUIElement.h" />
+    <ClInclude Include="inc\GUIImage.h" />
     <ClInclude Include="inc\GUIManager.h" />
     <ClInclude Include="inc\GUIScreen.h" />
+    <ClInclude Include="inc\GUIButton.h" />
     <ClInclude Include="inc\ImageManager.h" />
+    <ClInclude Include="inc\Level.h" />
     <ClInclude Include="inc\LevelFloor.h" />
+    <ClInclude Include="inc\LevelManager.h" />
     <ClInclude Include="inc\MessageListener.h" />
     <ClInclude Include="inc\MessageSystem.h" />
     <ClInclude Include="inc\ObjectFactory.h" />
     <ClInclude Include="inc\Player.h" />
+    <ClInclude Include="inc\Screen_MainMenu.h" />
     <ClInclude Include="inc\SoundManager.h" />
     <ClInclude Include="inc\SpriteAnimation.h" />
     <ClInclude Include="inc\TinyXML\tinystr.h" />
@@ -101,6 +115,7 @@
     <ClInclude Include="inc\XMLParser.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\CollisionManager.cpp" />
     <ClCompile Include="src\comp_Collidable.cpp" />
     <ClCompile Include="src\Game.cpp" />
@@ -110,6 +125,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MessageSystem.cpp" />
     <ClCompile Include="src\ObjectFactory.cpp" />
+    <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\SoundManager.cpp" />
     <ClCompile Include="src\TinyXML\tinystr.cpp" />
     <ClCompile Include="src\TinyXML\tinyxml.cpp" />

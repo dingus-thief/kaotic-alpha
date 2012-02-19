@@ -7,6 +7,7 @@
 #include "GameLog.h"
 #include "Vector2.h"
 #include "Components/Component.h"
+#include "Camera.h"
 
 namespace Kaotic_Alpha
 {
@@ -25,13 +26,14 @@ namespace Kaotic_Alpha
 		{
 			m_Sprites.push_back(sprite);
 		}
-		void Render()
+		void Render(Camera* camera)
 		{
 			for(std::vector<sf::Sprite>::iterator it = m_Sprites.begin(); it != m_Sprites.end(); ++it){
 				sf::Sprite sprite = (*it);
 				//translate sprites position from world space to local space
 				Kaotic_Alpha::Vector2 pos(sprite.GetPosition().x, sprite.GetPosition().y);
-				//Kaotic_Alpha::Vector2 translatedPosition GetTranslatedPosition(pos);
+				pos = camera->TranslateWorldCoordsToLocal(pos);
+				sprite.SetPosition(pos.X, pos.Y);
 				m_AppRef->Draw(sprite);
 			}
 			m_Sprites.clear();

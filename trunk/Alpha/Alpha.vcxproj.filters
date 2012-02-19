@@ -22,11 +22,41 @@
     <Filter Include="Source Files\TinyXML">
       <UniqueIdentifier>{6885817f-c9ec-455b-875f-f098dbf031e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GUI">
+      <UniqueIdentifier>{ff069a65-3fcc-40c5-a63e-e752daf09434}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI\GUIElements">
+      <UniqueIdentifier>{d6d50d51-d3cd-4ba1-baac-eb0d5fa9880c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI\GUIScreens">
+      <UniqueIdentifier>{29a67b99-8980-4c60-b2ed-358e0f300686}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MessageSystem">
+      <UniqueIdentifier>{083c3861-5d4d-42be-9d5e-a4a991625f60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects">
+      <UniqueIdentifier>{9e15a9ac-7891-4332-bbe1-c769912d88bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SpriteAnimation">
+      <UniqueIdentifier>{4f7ddf47-87f5-4f45-9816-0a8cde1fa782}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{6579726e-4251-44b2-998c-1fe9dc8717aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI">
+      <UniqueIdentifier>{6951cdeb-8146-4700-83e3-02cd15249656}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects">
+      <UniqueIdentifier>{4490c034-19c6-4cc8-bb49-c6399ea1e71e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MessageSystem">
+      <UniqueIdentifier>{c8466bfa-be02-4626-aa88-0edd24eacbd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Level">
+      <UniqueIdentifier>{6d44930a-0846-4f03-b4d6-b97f36c99d0b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inc\GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="inc\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -39,31 +69,13 @@
     <ClInclude Include="inc\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\GUIManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\GUIScreen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\ObjectFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="inc\SoundManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="inc\ImageManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="inc\Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\AnimatedSprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\SpriteAnimation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="inc\TinyXML\tinystr.h">
@@ -75,19 +87,7 @@
     <ClInclude Include="inc\XMLParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\GameMessage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\MessageSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\MessageListener.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="inc\CollisionManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\LevelFloor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="inc\Components\comp_Animation.h">
@@ -114,21 +114,63 @@
     <ClInclude Include="inc\Components\Component.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="inc\GUIScreen.h">
+      <Filter>Header Files\GUI\GUIScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\MessageListener.h">
+      <Filter>Header Files\MessageSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\MessageSystem.h">
+      <Filter>Header Files\MessageSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\GameMessage.h">
+      <Filter>Header Files\MessageSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Player.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\GameObject.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\ObjectFactory.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\AnimatedSprite.h">
+      <Filter>Header Files\SpriteAnimation</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SpriteAnimation.h">
+      <Filter>Header Files\SpriteAnimation</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\LevelFloor.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Level.h">
+      <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\LevelManager.h">
+      <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\GUIButton.h">
+      <Filter>Header Files\GUI\GUIElements</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\GUIManager.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Screen_MainMenu.h">
+      <Filter>Header Files\GUI\GUIScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\GUIElement.h">
+      <Filter>Header Files\GUI\GUIElements</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\GUIImage.h">
+      <Filter>Header Files\GUI\GUIElements</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObjectFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GUIManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\SoundManager.cpp">
@@ -152,14 +194,29 @@
     <ClCompile Include="src\XMLParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\MessageSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\CollisionManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\comp_Collidable.cpp">
+    <ClCompile Include="src\Camera.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\comp_Collidable.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUIManager.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Player.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ObjectFactory.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MessageSystem.cpp">
+      <Filter>Source Files\MessageSystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -6,7 +6,6 @@ Kaotic_Alpha::GUIManager* Kaotic_Alpha::GUIManager::pInstance = NULL;
 void Kaotic_Alpha::GUIManager::Shutdown()
 {
 	ClearScreens();
-
 	delete pInstance;
 	pInstance = NULL;
 }
@@ -22,20 +21,21 @@ Kaotic_Alpha::GUIManager* Kaotic_Alpha::GUIManager::GetSingleton()
 void Kaotic_Alpha::GUIManager::ClearScreens()
 {
 	for(std::vector<Kaotic_Alpha::GUIScreen*>::iterator it = m_Screens.begin(); it != m_Screens.end(); ++it){
-		WriteLog << "Deleting screen <" << (*it)->m_Name << ">" << std::endl;
+		(*it)->Shutdown();
 		delete *it;
 	}
 	m_Screens.clear();
 }
 
-void Kaotic_Alpha::GUIManager::PushScreen(Kaotic_Alpha::GUIScreen* newScreen)
+void Kaotic_Alpha::GUIManager::PushScreen(GUIScreen* newScreen)
 {
-	WriteLog << "Adding screen <" << newScreen->m_Name << ">"<< std::endl;
+	newScreen->Startup();
 	m_Screens.push_back(newScreen);
 }
 
 void Kaotic_Alpha::GUIManager::PopScreen()
 {
+	m_Screens.at(m_Screens.size()-1)->Shutdown();
 	delete m_Screens.at(m_Screens.size()-1);
 	m_Screens.pop_back();
 }

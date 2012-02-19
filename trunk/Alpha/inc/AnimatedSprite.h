@@ -9,8 +9,6 @@
 #include "SpriteAnimation.h"
 #include "GameLog.h"
 
-const float ANIMATION_FPS = 40.0;
-
 namespace Kaotic_Alpha
 {
 	class AnimatedSprite
@@ -27,6 +25,7 @@ namespace Kaotic_Alpha
 			posY = 0;
 			scaleX = 1;
 			scaleY = 1;
+			animationFPS = 60;
 		}
 		~AnimatedSprite()
 		{
@@ -81,7 +80,7 @@ namespace Kaotic_Alpha
 			if(currentAnimation != -1)
 			{
 				//throttle animation frame rate so that program can run as fast as possible and sprites won't run any faster
-				frameCounter += (deltaTime * ANIMATION_FPS);
+				frameCounter += (deltaTime * animationFPS);
 				frame = static_cast<int>(frameCounter) % m_SpriteAnimations[currentAnimation]->GetNumFrames();
 			}
 		}
@@ -108,7 +107,10 @@ namespace Kaotic_Alpha
 				return sprite;
 			}
 		}
-
+		void SetAnimationFPS(float val)
+		{
+			animationFPS = val;
+		}
 		void SetPosition(float x, float y)
 		{
 			posX = x;
@@ -139,6 +141,7 @@ namespace Kaotic_Alpha
 		float posX, posY;
 		float scaleX, scaleY;
 		bool flipSprite;
+		float animationFPS;
 	};
 }
 

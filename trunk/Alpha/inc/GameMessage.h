@@ -3,14 +3,18 @@
 
 namespace Kaotic_Alpha
 {
+	enum GAMESTATE;
+
 	class GameMessage
 	{
 	public:
+
 		// currently using enum for message type
 		enum MSG_TYPE
 		{
 			COLLISION = 0,
-			INTERACTION
+			INTERACTION,
+			STATECHANGE
 		};
 
 		GameMessage(MSG_TYPE msgType)
@@ -19,6 +23,7 @@ namespace Kaotic_Alpha
 
 		float TimeDelay; //in seconds		
 		int TargetID,SourceID;
+		GAMESTATE TargetState;
 		MSG_TYPE MsgType;
 	};
 }

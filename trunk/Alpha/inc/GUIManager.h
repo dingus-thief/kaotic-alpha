@@ -4,6 +4,8 @@
 #include <vector>
 #include "GUIScreen.h"
 
+#include "Screen_MainMenu.h"
+
 /*
 	GUIManager contains a vector of gui screens which acts as a stack of screens
 	A new screen can be pushed to the top of the stack or the top screen can be popped from the stack.

@@ -10,8 +10,8 @@ namespace Kaotic_Alpha
 	{
 	public:
 		static ObjectFactory* GetSingleton();
-		Kaotic_Alpha::GameObject* CreateObject(std::string objectName);
-		void DestroyAllObjects();
+		GameObject* CreateObject(sf::RenderWindow* appRef, std::string objectName);
+		void DestroyObject(GameObject* obj);
 		void Shutdown();
 		GameObject* GetObject(int uid);
 

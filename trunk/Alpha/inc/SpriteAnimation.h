@@ -31,9 +31,9 @@ namespace Kaotic_Alpha
 			std::string truncname;
 			truncname = m_Name.substr(0, m_Name.find_last_of("."));
 			truncname = "../../media/" + truncname + ".xml";
-			Kaotic_Alpha::XMLParser* parser = new Kaotic_Alpha::XMLParser(truncname.c_str());
+			XMLParser parser(truncname.c_str());
 			
-			TiXmlElement* spriteNode = parser->SearchForElement(parser->getXmlRootNode(), "sprite");
+			TiXmlElement* spriteNode = parser.SearchForElement(parser.getXmlRootNode(), "sprite");
 			while(spriteNode != 0){	
 				int x1 = atoi(spriteNode->Attribute("x"));
 				int x2 = x1 + atoi(spriteNode->Attribute("w"));
@@ -42,8 +42,6 @@ namespace Kaotic_Alpha
 				m_Clips.push_back(sf::IntRect(x1, y1, x2, y2));
 				spriteNode = spriteNode->NextSiblingElement();
 			}
-
-			delete parser;
 		}		
 
 		//based on the frame of the animation, return a sprite with just that clip
