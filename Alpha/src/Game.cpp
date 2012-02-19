@@ -1,8 +1,7 @@
 #include "Game.h"
+#include "GameMessage.h"
+#include "LevelManager.h"
 #include "GameLog.h"
-#include "Player.h"
-#include "LevelFloor.h"
-
 #include <SFML/System.hpp>
 
 //singletons
@@ -12,14 +11,15 @@
 #include "ImageManager.h"
 #include "CollisionManager.h"
 #include "MessageSystem.h"
-
-#include "GameMessage.h"
-
-const int FPS = 30;
+#include "Camera.h"
 
 void Kaotic_Alpha::Game::Startup()
 {
-	m_App = new sf::RenderWindow(sf::VideoMode(1280, 720, 32), "SFML Test");
+	int height = 720;
+	int width = 1280;
+	m_App = new sf::RenderWindow(sf::VideoMode(width, height, 32), "2D Platformer");
+	MessageSystem::GetSingleton()->AddListener(this);
+	m_GameState = MAINMENU;
 }
 
 void Kaotic_Alpha::Game::Shutdown()
@@ -37,19 +37,9 @@ void Kaotic_Alpha::Game::Shutdown()
 
 void Kaotic_Alpha::Game::Run()
 {
-	//set window BG
-	sf::Sprite Sprite;
-	Sprite.SetColor(sf::Color(255, 255, 255, 255));
-	Sprite.SetImage(ImageManager::GetSingleton()->GetImage("bg-panorama.jpg"));
-
-	Player* player = new Kaotic_Alpha::Player(m_App, 1);
-	player->Startup();
-	player->GetMovableComponent()->SetPositionY(0);
-	LevelFloor* floor = new LevelFloor(m_App, 3);
-	floor->Startup();
-
-	SoundManager::GetSingleton()->PlayMusic("../../media/music/TellItByHeart.ogg");
-
+	m_LevelManager = new LevelManager(m_App);
+	ChangeState(m_GameState);
+	
 	while(m_IsRunning && m_App->IsOpened())
 	{	
 		// Process events
@@ -59,25 +49,61 @@ void Kaotic_Alpha::Game::Run()
             if (Event.Type == sf::Event::Closed)
                 m_App->Close();       
 			if ((Event.Type == sf::Event::KeyPressed) && (Event.Key.Code == sf::Key::Escape))
-				m_App->Close();
+			{
+				if(m_GameState == MAINMENU)
+					m_App->Close();
+				if(m_GameState == PLAYLEVEL)
+					ChangeState(QUITLEVEL);
+			}
         }
 
 		m_App->Clear();
-		m_App->Draw(Sprite);
-		//execute game loop
-		//1. Process messages
+		if(m_GameState == PLAYLEVEL){
+			m_LevelManager->Update(m_App->GetFrameTime());
+		}
 		MessageSystem::GetSingleton()->Update(m_App->GetFrameTime());
-		//2. Update Components
-		player->Update(m_App->GetFrameTime());
-		player->UpdateMovement(m_App->GetFrameTime());
-		player->Render(m_App->GetFrameTime());
-		//3. Render Scene
+		GUIManager::GetSingleton()->UpdateScreens(m_App->GetFrameTime());
 		m_App->Display();
 
 		float fps = 1.f / m_App->GetFrameTime();
-		std::cout << fps << std::endl;
 	}
+	
+	m_LevelManager->Shutdown();
+}
 
-	player->Shutdown();
-	floor->Shutdown();
+Kaotic_Alpha::GameMessage* 	Kaotic_Alpha::Game::ProcessMessage(GameMessage* msg)
+{
+	if(msg->MsgType == GameMessage::STATECHANGE){
+		ChangeState(msg->TargetState);
+	}
+	return NULL;
+}
+
+void Kaotic_Alpha::Game::ChangeState(GAMESTATE newState)
+{
+	m_GameState = newState;
+
+	switch(newState)
+	{
+	case MAINMENU:
+			GUIManager::GetSingleton()->PushScreen(new Kaotic_Alpha::Screen_MainMenu("Main Menu", m_App));
+		break;
+	case LOADLEVEL:
+			GUIManager::GetSingleton()->PopScreen();
+			m_LevelManager->Startup();
+			m_LevelManager->LoadLevel(2);
+			ChangeState(PLAYLEVEL);
+		break;
+	case PLAYLEVEL:
+		break;
+	case UNLOADLEVEL:
+		m_LevelManager->ShutdownCurrentLevel();
+		break;
+	case QUITLEVEL:
+		m_LevelManager->Shutdown();
+		ChangeState(MAINMENU);
+		break;
+	default:
+		break;
+	}
 }

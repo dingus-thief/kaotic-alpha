@@ -14,6 +14,8 @@
 
 namespace Kaotic_Alpha
 {
+	class Camera;
+
 	class GameObject
 		: public MessageListener
 	{
@@ -25,7 +27,7 @@ namespace Kaotic_Alpha
 		
 		virtual void Update(float deltaTime); //update logic
 		virtual void UpdateMovement(float deltaTime);
-		virtual void Render(float deltaTime);
+		virtual void Render(float deltaTime, Camera* camera);
 
 		virtual void Shutdown();
 		virtual GameMessage* ProcessMessage(GameMessage* msg){ return NULL; }

@@ -2,10 +2,24 @@
 #define GAME_H
 
 #include <SFML/Graphics.hpp>
+#include "MessageListener.h"
 
 namespace Kaotic_Alpha
 {
+	class GameMessage;
+	class LevelManager;
+
+	enum GAMESTATE
+	{
+		MAINMENU = 0,
+		LOADLEVEL = 1,
+		PLAYLEVEL = 2,
+		UNLOADLEVEL = 3,
+		QUITLEVEL = 4,
+	};
+
 	class Game
+		: public MessageListener
 	{
 	public:
 		Game()
@@ -16,10 +30,14 @@ namespace Kaotic_Alpha
 		void Startup();
 		void Shutdown();
 		void Run();
+		void ChangeState(GAMESTATE newState);
+		GameMessage* ProcessMessage(GameMessage* msg);
 
 	private:
 		bool m_IsRunning;
-		sf::RenderWindow* m_App;
+		sf::RenderWindow*	m_App;
+		LevelManager*		m_LevelManager;
+		GAMESTATE			m_GameState;
 	};
 }
 

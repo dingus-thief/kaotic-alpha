@@ -7,4 +7,9 @@
     <LocalDebuggerWorkingDirectory>bin\$(Configuration)</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LocalDebuggerCommand>bin\$(Configuration)\$(TargetName)$(TargetExt)</LocalDebuggerCommand>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerWorkingDirectory>bin\$(Configuration)</LocalDebuggerWorkingDirectory>
+  </PropertyGroup>
 </Project>

@@ -33,16 +33,12 @@ void Kaotic_Alpha::MessageSystem::Update(float deltaTime)
 			for(std::vector<MessageListener*>::iterator listenerIt = m_Listeners.begin(); listenerIt != m_Listeners.end(); ++listenerIt)
 			{
 				GameMessage* returnMsg = (*listenerIt)->ProcessMessage(msg);
-				if(returnMsg != NULL)
-				{
-					QueueMessage(returnMsg);
-				}
+				break;
 			}
 
 			m_MsgQueue.erase(m_MsgQueue.begin() + i);
 		}
-		else if(msg != NULL)
-		{
+		else if(msg != NULL){
 			msg->TimeDelay -= deltaTime;
 		}
 	}
@@ -63,13 +59,12 @@ void Kaotic_Alpha::MessageSystem::RemoveListener(Kaotic_Alpha::MessageListener* 
 void Kaotic_Alpha::MessageSystem::QueueMessage(Kaotic_Alpha::GameMessage* msg)
 { 
 	m_MsgQueue.push_back(msg);
-	//std::cout << "queueing message" << std::endl;
+	std::cout << "queueing message" << std::endl;
 }
 
 void Kaotic_Alpha::MessageSystem::ClearMessages() 
 {
-	for(std::vector<GameMessage*>::iterator it = m_MsgQueue.begin(); it != m_MsgQueue.end(); ++it)
-	{
+	for(std::vector<GameMessage*>::iterator it = m_MsgQueue.begin(); it != m_MsgQueue.end(); ++it){
 		delete *it;
 	}
 	m_MsgQueue.clear();

@@ -2,24 +2,35 @@
 #define GUISCREEN_H
 
 #include <string>
+#include <vector>
+#include <SFML/Graphics.hpp>
+#include "Vector2.h"
+#include "GUIElement.h"
 
 namespace Kaotic_Alpha
 {
 	class GUIScreen
 	{
-	public:
-		virtual void Update(float deltaTime){}
-		virtual void Render(){}
-
-		GUIScreen(std::string name)
+	public:	
+		GUIScreen(std::string name, sf::RenderWindow* appRef)
+			: m_AppRef(appRef)
 		{
 			m_Name = name;
 		}
 		virtual ~GUIScreen(){}
 
-		std::string m_Name;
+		virtual void Startup(){}
+		virtual void Update(float deltaTime){}
+		virtual void Render(){}
+		virtual void Shutdown(){}
 
-	private:
+	protected:	
+		std::string m_Name;
+		sf::RenderWindow*			m_AppRef;
+		Vector2						m_Size;
+		Vector2						m_Position;
+		sf::Sprite*					m_BackgroundImage;
+		std::vector<GUIElement*>	m_GUIElements;
 
 	};
 }

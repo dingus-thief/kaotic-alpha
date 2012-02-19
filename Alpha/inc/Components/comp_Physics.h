@@ -4,8 +4,8 @@
 #include "Vector2.h"
 #include "Components/Component.h"
 
-const float maxPull = 1.0f;
-const float gravity = 0.01f; 
+const float maxPull = -1.5f;
+const float gravity = -0.05f; 
 
 namespace Kaotic_Alpha
 {
@@ -16,7 +16,7 @@ namespace Kaotic_Alpha
 		void Startup();
 		void Update(Kaotic_Alpha::Vector2& desiredVelocity, float deltaTime)
 		{
-			if(desiredVelocity.Y < maxPull){
+			if(desiredVelocity.Y > maxPull){
 				desiredVelocity.Y += gravity;
 			}
 		}

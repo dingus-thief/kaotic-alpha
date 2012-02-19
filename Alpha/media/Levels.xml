@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<level id="1" bgImage="bg-panorama.jpg" bgMusic="TellItByHeart.ogg" minBoundsX="0" maxBoundsX="1800" minBoundsY="0" maxBoundsY="1500">
+		<spawn startX="0" startY="0" />
+		<enemy type="2" posX="0" posY="0" />
+	</level>
+	<level id="2" bgImage="bg-panorama2.jpg" bgMusic="TheDarkeningGround.ogg" minBoundsX="0" maxBoundsX="1800" minBoundsY="0" maxBoundsY="1500">
+		<spawn startX="0" startY="0" />
+		<enemy type="2" posX="0" posY="0" />
+	</level>
+</root>
