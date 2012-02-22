@@ -11,11 +11,12 @@ namespace Kaotic_Alpha
 
 	enum GAMESTATE
 	{
-		MAINMENU = 0,
-		LOADLEVEL = 1,
-		PLAYLEVEL = 2,
-		UNLOADLEVEL = 3,
-		QUITLEVEL = 4,
+		MAINMENU,
+		LOADLEVEL,
+		PLAYLEVEL,
+		UNLOADLEVEL,
+		QUITLEVEL,
+		QUIT
 	};
 
 	class Game
