@@ -17,10 +17,7 @@ void Kaotic_Alpha::Player::Startup()
 	m_RenderComp = new Comp_Renderable(m_AppRef);
 	m_AnimationComp = new Comp_Animation(m_RenderComp);
 	m_MovableComp = new Comp_Movable();
-	//m_PhysicsComp = new Comp_Physics(); 
-
-	//set player default movement speed (can load from file, etc.)
-	m_MovableComp->SetMovementSpeed(150.0f);
+	m_PhysicsComp = new Comp_Physics(); 
 
 	//create player sprite and add animations
 	Kaotic_Alpha::AnimatedSprite* sprite = new Kaotic_Alpha::AnimatedSprite("Player");
@@ -28,13 +25,10 @@ void Kaotic_Alpha::Player::Startup()
 	sprite->AddAnimation("Running.png");
 	sprite->AddAnimation("Idle.png");
 	sprite->PlayAnimation("Idle.png");
-	m_MovableComp->SetPosition(Vector2(610.0f, 340.0f));
 	m_AnimationComp->SetAnimatedSprite(sprite);
 			
 	m_Jumping = false;
-			
-	//need sprite info before creating collidable component
-	m_CollideComp = new Comp_Collidable(this, 55, 80);
+		
 }
 
 void Kaotic_Alpha::Player::Update(float deltaTime)
@@ -42,35 +36,49 @@ void Kaotic_Alpha::Player::Update(float deltaTime)
 	//Check input
 	if(m_AppRef->GetInput().IsKeyDown(sf::Key::Right) || m_AppRef->GetInput().IsKeyDown(sf::Key::D))
 	{
-		m_MovableComp->SetDesiredVelocityX(1.0f);
+		b2Vec2 currentDirection = m_PhysicsComp->GetBody()->GetLinearVelocity();
+		currentDirection.x = 2.0f;
+		m_PhysicsComp->GetBody()->SetLinearVelocity(currentDirection);
 		m_AnimationComp->GetAnimatedSprite()->FlipSprite(false);
 		m_AnimationComp->GetAnimatedSprite()->PlayAnimation("Running.png");
 		m_AnimationComp->GetAnimatedSprite()->SetAnimationFPS(45.0f);
 	}
 	else if(m_AppRef->GetInput().IsKeyDown(sf::Key::Left) || m_AppRef->GetInput().IsKeyDown(sf::Key::A))
 	{
-		m_MovableComp->SetDesiredVelocityX(-1.0f);
+		b2Vec2 currentDirection = m_PhysicsComp->GetBody()->GetLinearVelocity();
+		currentDirection.x = -2.0f;
+		m_PhysicsComp->GetBody()->SetLinearVelocity(currentDirection);
 		m_AnimationComp->GetAnimatedSprite()->FlipSprite(true);
 		m_AnimationComp->GetAnimatedSprite()->PlayAnimation("Running.png");
 		m_AnimationComp->GetAnimatedSprite()->SetAnimationFPS(45.0f);
 	}
 	else
 	{
-		m_MovableComp->SetDesiredVelocityX(0.0f);
+		b2Vec2 currentDirection = m_PhysicsComp->GetBody()->GetLinearVelocity();
+		currentDirection.x = 0.0f;
+		m_PhysicsComp->GetBody()->SetLinearVelocity(currentDirection);
 		m_AnimationComp->GetAnimatedSprite()->PlayAnimation("Idle.png");
 		m_AnimationComp->GetAnimatedSprite()->SetAnimationFPS(10.0f);
 	}
-	if(m_MovableComp->GetDesiredVelocity().Y == 0.0f && (m_AppRef->GetInput().IsKeyDown(sf::Key::Space) || m_AppRef->GetInput().IsKeyDown(sf::Key::Up)))
-	{
-		m_Jumping = true;
+
+	//check if player can jump
+	b2Vec2 currentVelocity = m_PhysicsComp->GetBody()->GetLinearVelocity();
+	if((m_AppRef->GetInput().IsKeyDown(sf::Key::Space) || m_AppRef->GetInput().IsKeyDown(sf::Key::Up) || m_AppRef->GetInput().IsKeyDown(sf::Key::W))){
+		if(!m_Jumping && currentVelocity.y < 0.01 && currentVelocity.y > -0.01){
+			m_Jumping = true;
+		}
 	}
 
 	//reset jumping flag if velocity < 0
 	if(m_Jumping)
 	{
-		m_MovableComp->SetDesiredVelocityY(m_MovableComp->GetDesiredVelocity().Y + 2.5f);
-		if(m_MovableComp->GetDesiredVelocity().Y >= 15.0f){
+		float maxJump = 3.0f;
+		if(currentVelocity.y >= maxJump )	{
 			m_Jumping = false;
+		}
+		else{
+			currentVelocity.y += 1.0f;
+			m_PhysicsComp->GetBody()->SetLinearVelocity(currentVelocity);
 		}
 	}
 
@@ -83,7 +91,6 @@ Kaotic_Alpha::GameMessage* Kaotic_Alpha::Player::ProcessMessage(GameMessage* msg
 	if(msg->MsgType == GameMessage::MSG_TYPE::COLLISION)
 	{
 		if(msg->TargetID == m_UID){
-			m_MovableComp->SetDesiredVelocity(Vector2(0,0));
 		}
 	}
 

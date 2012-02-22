@@ -11,9 +11,12 @@
 #include "GUIManager.h"
 #include "SoundManager.h"
 #include "ImageManager.h"
-#include "CollisionManager.h"
 #include "MessageSystem.h"
+#include "PhysicsWorld.h"
 #include "Camera.h"
+
+const int velocityIterations = 6;
+const int positionIterations = 2;
 
 void Kaotic_Alpha::Game::Startup()
 {
@@ -22,11 +25,6 @@ void Kaotic_Alpha::Game::Startup()
 	m_App = new sf::RenderWindow(sf::VideoMode(width, height, 32), "2D Platformer");
 	MessageSystem::GetSingleton()->AddListener(this);
 	m_GameState = MAINMENU;
-
-	// Define the gravity vector.
-	b2Vec2 gravity(0.0f, -10.0f);
-	// Construct a world object, which will hold and simulate the rigid bodies.
-	b2World world(gravity);
 }
 
 void Kaotic_Alpha::Game::Shutdown()
@@ -37,7 +35,7 @@ void Kaotic_Alpha::Game::Shutdown()
 	SoundManager::GetSingleton()->Shutdown();
 	ImageManager::GetSingleton()->Shutdown();
 	MessageSystem::GetSingleton()->Shutdown();
-	CollisionManager::GetSingleton()->Shutdown();
+	PhysicsWorld::GetSingleton()->Shutdown();
 
 	delete m_App;
 }
@@ -66,6 +64,8 @@ void Kaotic_Alpha::Game::Run()
 
 		m_App->Clear();
 		if(m_GameState == PLAYLEVEL){
+			//update physics
+			PhysicsWorld::GetSingleton()->GetPhysicsWorld()->Step(m_App->GetFrameTime(), velocityIterations, positionIterations);
 			m_LevelManager->Update(m_App->GetFrameTime());
 		}
 		MessageSystem::GetSingleton()->Update(m_App->GetFrameTime());

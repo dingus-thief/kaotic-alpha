@@ -16,9 +16,20 @@ namespace Kaotic_Alpha
 			: m_LevelNum(levelNum), m_AppRef(appRef)
 		{}
 
+		void ConstructGround()
+		{
+			b2BodyDef groundBodyDef;
+				groundBodyDef.position.Set(0.0f, 2.5f);
+				m_Ground = PhysicsWorld::GetSingleton()->GetPhysicsWorld()->CreateBody(&groundBodyDef);	
+			b2PolygonShape groundBox;	
+				groundBox.SetAsBox(50.0f, 0.5f);
+				m_Ground->CreateFixture(&groundBox, 0.0f);
+		}
+
 		void Startup()
 		{
 			SoundManager::GetSingleton()->StopMusic();
+			ConstructGround();
 
 			//attempt to find level in the level xml file
 			bool levelFound = false;
@@ -76,6 +87,7 @@ namespace Kaotic_Alpha
 		}
 
 	private:
+		b2Body*						m_Ground;
 		sf::RenderWindow*			m_AppRef;
 		sf::Sprite					m_BGSprite;
 		int							m_LevelNum;

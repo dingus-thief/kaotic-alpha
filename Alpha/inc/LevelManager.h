@@ -38,8 +38,6 @@ namespace Kaotic_Alpha
 			if(m_CurrentLevel == NULL){
 				if(levelNum <= m_NumLevels && levelNum > 0){
 					m_CurrentLevelNum = levelNum;
-					m_Player->GetMovableComponent()->SetPositionX(610.0f);
-					m_Player->GetMovableComponent()->SetPositionY(380.0f);
 					WriteLog << "Loading level " << levelNum << std::endl;
 					m_CurrentLevel = new Level(levelNum, m_AppRef);
 					m_CurrentLevel->Startup();
