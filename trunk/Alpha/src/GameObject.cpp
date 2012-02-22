@@ -1,6 +1,5 @@
 #include "GameObject.h"
 #include "MessageSystem.h"
-#include "CollisionManager.h"
 
 Kaotic_Alpha::GameObject::GameObject(std::string name, int uid){
 	m_Name = name;
@@ -15,13 +14,10 @@ Kaotic_Alpha::GameObject::~GameObject(){
 void Kaotic_Alpha::GameObject::Startup()
 {
 	m_AnimationComp = 0;
-	m_CollideComp = 0;
 	m_HealthComp = 0;
 	m_MovableComp = 0;
 	m_PhysicsComp = 0;
 	m_RenderComp = 0;
-
-	CollisionManager::GetSingleton()->RegisterCollisionObject(this);
 }
 
 void Kaotic_Alpha::GameObject::Shutdown()
@@ -31,27 +27,22 @@ void Kaotic_Alpha::GameObject::Shutdown()
 		delete m_AnimationComp;
 	if(m_RenderComp)
 		delete m_RenderComp;
-	if(m_CollideComp)
-		delete m_CollideComp;
 	if(m_HealthComp)
 		delete m_HealthComp;
 	if(m_MovableComp)
 		delete m_MovableComp;
 	
 	m_AnimationComp = 0;
-	m_CollideComp = 0;
 	m_HealthComp = 0;
 	m_MovableComp = 0;
 	m_PhysicsComp = 0;
 	m_RenderComp = 0;
-
-	CollisionManager::GetSingleton()->UnregisterCollisionObject(this);
 }
 
 void Kaotic_Alpha::GameObject::Update(float deltaTime)
 {
 	if(m_PhysicsComp){
-		m_PhysicsComp->Update(m_MovableComp->GetDesiredVelocity(), deltaTime);
+		m_PhysicsComp->Update(deltaTime);
 	}
 	if(m_HealthComp){
 		m_HealthComp->CheckDeath();
@@ -61,10 +52,7 @@ void Kaotic_Alpha::GameObject::Update(float deltaTime)
 void Kaotic_Alpha::GameObject::UpdateMovement(float deltaTime)
 {
 	if(m_MovableComp){
-		m_MovableComp->Update(deltaTime);
-	}
-	if(m_CollideComp){
-		m_CollideComp->CheckCollisions(this, m_MovableComp->GetPosition(), deltaTime);
+		m_MovableComp->Update(deltaTime, m_PhysicsComp->GetBody());
 	}
 	if(m_AnimationComp){
 		m_AnimationComp->Update(deltaTime, m_MovableComp->GetPosition().X, m_MovableComp->GetPosition().Y);

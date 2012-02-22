@@ -87,13 +87,7 @@
     <ClInclude Include="inc\XMLParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\CollisionManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="inc\Components\comp_Animation.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\Components\comp_Collidable.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="inc\Components\comp_Health.h">
@@ -165,6 +159,9 @@
     <ClInclude Include="inc\GUIImage.h">
       <Filter>Header Files\GUI\GUIElements</Filter>
     </ClInclude>
+    <ClInclude Include="inc\PhysicsWorld.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -194,14 +191,8 @@
     <ClCompile Include="src\XMLParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\CollisionManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Camera.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\comp_Collidable.cpp">
-      <Filter>Source Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\GUIManager.cpp">
       <Filter>Source Files\GUI</Filter>
@@ -217,6 +208,9 @@
     </ClCompile>
     <ClCompile Include="src\MessageSystem.cpp">
       <Filter>Source Files\MessageSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PhysicsWorld.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

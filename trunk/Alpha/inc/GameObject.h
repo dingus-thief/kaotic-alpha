@@ -3,7 +3,6 @@
 
 #include <string>
 #include <SFML/Graphics.hpp>
-#include "Components/comp_Collidable.h"
 #include "Components/comp_Renderable.h"
 #include "Components/comp_Health.h"
 #include "Components/comp_Movable.h"
@@ -34,7 +33,6 @@ namespace Kaotic_Alpha
 
 		int GetUID() const { return m_UID; }
 		std::string GetName() const { return m_Name; }
-		BoundingBox GetBoundingBox() const { return m_CollideComp->GetBounds(); }
 	
 		Comp_Movable* GetMovableComponent() const { return m_MovableComp; }
 
@@ -44,7 +42,6 @@ namespace Kaotic_Alpha
 		
 		//components
 		Comp_Renderable*	m_RenderComp;
-		Comp_Collidable*	m_CollideComp;
 		Comp_Health*		m_HealthComp;
 		Comp_Movable*		m_MovableComp;
 		Comp_Animation*		m_AnimationComp;
