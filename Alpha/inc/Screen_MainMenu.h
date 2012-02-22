@@ -5,6 +5,7 @@
 #include "GUIScreen.h"
 #include "GUIImage.h"
 #include "GameMessage.h"
+#include "SoundManager.h"
 
 namespace Kaotic_Alpha
 {
@@ -14,6 +15,8 @@ namespace Kaotic_Alpha
 	public:
 		void Startup()
 		{
+			SoundManager::GetSingleton()->PlayMusic("Maenam.ogg");
+
 			GameMessage* msgPlay = new GameMessage(GameMessage::MSG_TYPE::STATECHANGE);
 			msgPlay->TargetState = LOADLEVEL;
 			GameMessage* msgQuit = new GameMessage(GameMessage::MSG_TYPE::STATECHANGE);
