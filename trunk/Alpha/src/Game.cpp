@@ -4,6 +4,8 @@
 #include "GameLog.h"
 #include <SFML/System.hpp>
 
+#include <Box2D/Box2D.h>
+
 //singletons
 #include "ObjectFactory.h"
 #include "GUIManager.h"
@@ -20,6 +22,11 @@ void Kaotic_Alpha::Game::Startup()
 	m_App = new sf::RenderWindow(sf::VideoMode(width, height, 32), "2D Platformer");
 	MessageSystem::GetSingleton()->AddListener(this);
 	m_GameState = MAINMENU;
+
+	// Define the gravity vector.
+	b2Vec2 gravity(0.0f, -10.0f);
+	// Construct a world object, which will hold and simulate the rigid bodies.
+	b2World world(gravity);
 }
 
 void Kaotic_Alpha::Game::Shutdown()
@@ -102,6 +109,9 @@ void Kaotic_Alpha::Game::ChangeState(GAMESTATE newState)
 	case QUITLEVEL:
 		m_LevelManager->Shutdown();
 		ChangeState(MAINMENU);
+		break;
+	case QUIT:
+		m_App->Close();
 		break;
 	default:
 		break;

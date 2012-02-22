@@ -5,6 +5,7 @@
 #include "GUIElement.h"
 #include "MessageSystem.h"
 #include "Game.h"
+#include "ImageManager.h"
 
 namespace Kaotic_Alpha
 {
@@ -12,15 +13,16 @@ namespace Kaotic_Alpha
 		: public GUIElement
 	{
 	public:
-		GUIButton(sf::RenderWindow* appRef, std::string text, float offsetX, float offsetY)
-			: GUIElement(appRef)
+		GUIButton(sf::RenderWindow* appRef, std::string filename, float offsetX, float offsetY, GameMessage* sentMessage)
+			: GUIElement(appRef), m_SentMessage(sentMessage)
 		{
 			m_Pressed = false;
 			m_Position = Vector2(offsetX,offsetY);
-			m_Text.SetText(text);
-			m_Text.Move(m_Position.X, m_Position.Y);
-			m_Text.SetColor(sf::Color(255, 255, 255));
-			m_Dimensions = Vector2(m_Text.GetRect().GetWidth(), m_Text.GetRect().GetHeight());
+			m_BGImage = ImageManager::GetSingleton()->GetImage(filename);
+			m_CurrentSprite = sf::Sprite();
+			m_CurrentSprite.SetPosition(m_Position.X, m_Position.Y);
+			m_CurrentSprite.SetImage(m_BGImage);
+			m_Dimensions = Vector2(m_BGImage.GetWidth(), m_BGImage.GetHeight());
 		}
 		virtual ~GUIButton()
 		{
@@ -34,39 +36,39 @@ namespace Kaotic_Alpha
 				OnActive();
 			}
 			else{
-				m_Text.SetColor(sf::Color(255, 255, 255));
+				m_CurrentSprite.SetColor(sf::Color(255, 255, 255));
 			}
 		}
 
 		bool IsPressed() const { return m_Pressed; }
 		void Render() 
 		{
-			m_AppRef->Draw(m_Text);
+			m_AppRef->Draw(m_CurrentSprite);
 		}
 
 	protected:
 		void OnPress()
 		{
 			if(!m_Pressed){
-				GameMessage* msg = new GameMessage(GameMessage::STATECHANGE);
-				msg->TargetState = GAMESTATE::LOADLEVEL;
-				MessageSystem::GetSingleton()->QueueMessage(msg);
+				MessageSystem::GetSingleton()->QueueMessage(m_SentMessage);
 			}
 			m_Pressed = true;
 		}
 
 		void OnActive()
 		{
-			m_Text.SetColor(sf::Color(125, 125, 125));
 			m_Active = true;
+			m_CurrentSprite.SetColor(sf::Color(255, 195, 0));
 			if(m_AppRef->GetInput().IsMouseButtonDown(sf::Mouse::Button::Left))
 			{
-				m_Text.SetColor(sf::Color(75, 75, 75));
+				m_CurrentSprite.SetColor(sf::Color(75, 75, 75));
 				OnPress();
 			}
 		}
 
-		sf::String			m_Text;
+		GameMessage*		m_SentMessage;
+		sf::Image			m_BGImage;
+		sf::Sprite			m_CurrentSprite;
 
 		sf::FloatRect		m_ButtonBounds;
 		Vector2				m_Dimensions;

@@ -4,6 +4,7 @@
 #include "GUIButton.h"
 #include "GUIScreen.h"
 #include "GUIImage.h"
+#include "GameMessage.h"
 
 namespace Kaotic_Alpha
 {
@@ -13,8 +14,15 @@ namespace Kaotic_Alpha
 	public:
 		void Startup()
 		{
+			GameMessage* msgPlay = new GameMessage(GameMessage::MSG_TYPE::STATECHANGE);
+			msgPlay->TargetState = LOADLEVEL;
+			GameMessage* msgQuit = new GameMessage(GameMessage::MSG_TYPE::STATECHANGE);
+			msgQuit->TargetState = QUIT;
+
 			m_GUIElements.push_back(new GUIImage(m_AppRef, "MainMenuBG.png"));
-			m_GUIElements.push_back(new GUIButton(m_AppRef, "Play", 60, 550));
+			m_GUIElements.push_back(new GUIButton(m_AppRef, "btn_Play.png", 230, 360, msgPlay));
+			m_GUIElements.push_back(new GUIButton(m_AppRef, "btn_Options.png", 230, 410, NULL));
+			m_GUIElements.push_back(new GUIButton(m_AppRef, "btn_Quit.png", 230, 460, msgQuit));
 		}
 		void Update(float deltaTime)
 		{
