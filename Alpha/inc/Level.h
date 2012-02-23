@@ -16,14 +16,52 @@ namespace Kaotic_Alpha
 			: m_LevelNum(levelNum), m_AppRef(appRef)
 		{}
 
+		//Todo: Implement all of this via xml or some sort of data format
 		void ConstructGround()
 		{
 			b2BodyDef groundBodyDef;
-				groundBodyDef.position.Set(0.0f, 2.5f);
-				m_Ground = PhysicsWorld::GetSingleton()->GetPhysicsWorld()->CreateBody(&groundBodyDef);	
-			b2PolygonShape groundBox;	
-				groundBox.SetAsBox(50.0f, 0.5f);
-				m_Ground->CreateFixture(&groundBox, 0.0f);
+			groundBodyDef.type = b2_staticBody;
+			groundBodyDef.position.Set(600.0f, 250.0f); //creates ground centered at player
+	
+			//ground1
+			b2Body* ground = PhysicsWorld::GetSingleton()->GetPhysicsWorld()->CreateBody(&groundBodyDef);	
+			b2PolygonShape groundBox;		
+			groundBox.SetAsBox(700.0f, 50.0f); //sets size to 200, 50			
+			b2FixtureDef fixtureDef;
+			fixtureDef.shape = &groundBox;
+			fixtureDef.density = 10.0f;
+			fixtureDef.restitution = 0.0f;
+			fixtureDef.friction = 1.0f;
+			ground->CreateFixture(&fixtureDef);
+			
+			/*
+			//ground2				
+			groundBodyDef.position.Set(13.0f, 2.5f);
+			b2Body* ground2 = PhysicsWorld::GetSingleton()->GetPhysicsWorld()->CreateBody(&groundBodyDef);	
+
+			b2Vec2 vertices[3];
+				vertices[0].Set(0.0f, -2.0f);
+				vertices[1].Set(5.0f, -2.0f);
+				vertices[2].Set(0.0f, 0.0f);  			
+				
+			int32 count = 3;
+			b2PolygonShape triangle;
+			triangle.Set(vertices, count);
+			b2FixtureDef myFixtureDef;
+			myFixtureDef.shape = &triangle;
+			myFixtureDef.density = 1; 
+
+			ground2->CreateFixture(&myFixtureDef);
+			*/
+
+			//ground3
+			groundBodyDef.position.Set(2200.0f, 28.0f);
+			b2Body* ground3 = PhysicsWorld::GetSingleton()->GetPhysicsWorld()->CreateBody(&groundBodyDef);	
+			b2PolygonShape groundBox2;	
+			groundBox2.SetAsBox(500.0f, 50.0f); //sets size to 200, 50
+			fixtureDef.shape = &groundBox2;
+			ground3->CreateFixture(&fixtureDef);
+				
 		}
 
 		void Startup()

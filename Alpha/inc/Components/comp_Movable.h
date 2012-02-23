@@ -21,8 +21,8 @@ namespace Kaotic_Alpha
 		void Update(float deltaTime, b2Body* body)
 		{ 
 			if(body != NULL){
-				m_CurrentPosition.X = body->GetPosition().x * 100;
-				m_CurrentPosition.Y = body->GetPosition().y * 100;
+				m_CurrentPosition.X = body->GetPosition().x;
+				m_CurrentPosition.Y = body->GetPosition().y;
 			}
 		}
 

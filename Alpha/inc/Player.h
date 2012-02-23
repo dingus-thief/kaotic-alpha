@@ -18,8 +18,10 @@ namespace Kaotic_Alpha
 		void Shutdown();
 		GameMessage* ProcessMessage(GameMessage* msg);
 
-	private:
+	private:  
+		int m_NumFootContacts;
 		bool m_Jumping;
+		float m_CurrentSpeed;
 	};
 }
 

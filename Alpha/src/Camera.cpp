@@ -6,8 +6,8 @@ void Kaotic_Alpha::Camera::Update(float deltaTime)
 
 	//temp
 	float levelBounds_MINx = 0.0f;
-	float levelBounds_MAXx = 2500.0f;
-	float levelBounds_MINy = 0.0f;
+	float levelBounds_MAXx = 1800.0f;
+	float levelBounds_MINy = -500.0f;
 	float levelBounds_MAXy = 2500.0f;
 
 	if(m_Tracking && m_FollowTarget != NULL)

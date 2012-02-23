@@ -37,7 +37,6 @@ void Kaotic_Alpha::GUIManager::PopScreen()
 {
 	if(m_Screens.size() > 0){
 		m_Screens.at(m_Screens.size()-1)->Shutdown();
-		WriteLog << "Deleting " << m_Screens.at(m_Screens.size()-1)->GetName() << std::endl;
 		delete m_Screens.at(m_Screens.size()-1);
 		m_Screens.pop_back();
 	}

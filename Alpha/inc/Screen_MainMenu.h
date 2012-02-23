@@ -18,9 +18,9 @@ namespace Kaotic_Alpha
 		{
 			SoundManager::GetSingleton()->PlayMusic("Maenam.ogg");
 
-			GameMessage* msgPlay = new GameMessage(GameMessage::MSG_TYPE::STATECHANGE);
+			GameMessage* msgPlay = new GameMessage(GameMessage::STATECHANGE);
 			msgPlay->TargetState = LOADLEVEL;
-			GameMessage* msgQuit = new GameMessage(GameMessage::MSG_TYPE::STATECHANGE);
+			GameMessage* msgQuit = new GameMessage(GameMessage::STATECHANGE);
 			msgQuit->TargetState = QUIT;
 
 			m_GUIElements.push_back(new GUIImage(m_AppRef, "MainMenuBG.png"));

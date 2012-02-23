@@ -24,24 +24,19 @@ void Kaotic_Alpha::MessageSystem::Shutdown()
 void Kaotic_Alpha::MessageSystem::Update(float deltaTime)
 {
 	//read all messages back to front, so messages can be removed
-	for(int i = static_cast<int>(m_MsgQueue.size()-1); i >= 0; --i)
+	for(std::vector<GameMessage*>::iterator it = m_MsgQueue.begin(); it != m_MsgQueue.end(); ++it)
 	{
-		GameMessage* msg = m_MsgQueue.at(i);
+		GameMessage* msg = *it;
 		if(msg != NULL && msg->TimeDelay <= 0)
 		{
 			//process message by sending a reference to all listeners
-			for(std::vector<MessageListener*>::iterator listenerIt = m_Listeners.begin(); listenerIt != m_Listeners.end(); ++listenerIt)
-			{
-				GameMessage* returnMsg = (*listenerIt)->ProcessMessage(msg);
-				break;
+			for(int listCounter = 0; listCounter < m_Listeners.size(); ++listCounter){
+				m_Listeners.at(listCounter)->ProcessMessage(msg);
 			}
-
-			m_MsgQueue.erase(m_MsgQueue.begin() + i);
-		}
-		else if(msg != NULL){
-			msg->TimeDelay -= deltaTime;
 		}
 	}
+
+	m_MsgQueue.clear();
 }
 
 void Kaotic_Alpha::MessageSystem::RemoveListener(Kaotic_Alpha::MessageListener* msgListener)
@@ -59,7 +54,6 @@ void Kaotic_Alpha::MessageSystem::RemoveListener(Kaotic_Alpha::MessageListener* 
 void Kaotic_Alpha::MessageSystem::QueueMessage(Kaotic_Alpha::GameMessage* msg)
 { 
 	m_MsgQueue.push_back(msg);
-	std::cout << "queueing message" << std::endl;
 }
 
 void Kaotic_Alpha::MessageSystem::ClearMessages() 

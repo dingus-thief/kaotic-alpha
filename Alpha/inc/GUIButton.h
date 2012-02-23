@@ -58,7 +58,7 @@ namespace Kaotic_Alpha
 		{
 			m_Active = true;
 			m_CurrentSprite.SetColor(sf::Color(255, 195, 0));
-			if(m_AppRef->GetInput().IsMouseButtonDown(sf::Mouse::Button::Left))
+			if(m_AppRef->GetInput().IsMouseButtonDown(sf::Mouse::Left))
 			{
 				m_CurrentSprite.SetColor(sf::Color(75, 75, 75));
 				OnPress();
