@@ -2,6 +2,8 @@
 #define COMP_HEALTH_H
 
 #include "Components/Component.h"
+#include "Game.h"
+#include "MessageSystem.h"
 
 namespace Kaotic_Alpha
 {
@@ -50,16 +52,22 @@ namespace Kaotic_Alpha
 		unsigned int GetMaxHealth() const { return m_MaxHealth; }
 		void SetMaxHealth(int value) { m_MaxHealth = value; ResetHealth(); }
 
-		//temp
 		void AddLife(){ ++m_NumLives; }
-		void RemoveLife(){ --m_NumLives; }
+		void RemoveLife()
+		{
+			--m_NumLives; 
+			if(m_NumLives <= 0){
+				GameMessage* msg = new GameMessage(Kaotic_Alpha::GameMessage::STATECHANGE);
+				msg->TargetState = QUITLEVEL;
+				MessageSystem::GetSingleton()->QueueMessage(msg);
+			}
+		}
 
 	private:
 		bool m_IsAlive;
 		unsigned int m_CurrentHealth;
 		unsigned int m_MaxHealth;
 		unsigned int m_NumLives;
-		//unsigned int m_TempHealthBonus (powerup)
 	};
 }
 

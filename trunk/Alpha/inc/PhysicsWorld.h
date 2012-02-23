@@ -2,6 +2,7 @@
 #define PHYSICSWORLD_H
 
 #include <Box2D/Box2D.h>
+#include "MyContactListener.h"
 
 namespace Kaotic_Alpha
 {
@@ -19,8 +20,9 @@ namespace Kaotic_Alpha
 	private:	
 		PhysicsWorld();
 
-		b2World* m_World;
-		static PhysicsWorld* p_Instance;
+		MyContactListener*		m_ContactListener;
+		b2World*				m_World;
+		static PhysicsWorld*	p_Instance;
 	};
 }
 

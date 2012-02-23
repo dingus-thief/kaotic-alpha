@@ -15,8 +15,8 @@
 #include "PhysicsWorld.h"
 #include "Camera.h"
 
-const int velocityIterations = 6;
-const int positionIterations = 2;
+const int velocityIterations = 10;
+const int positionIterations = 10;
 
 void Kaotic_Alpha::Game::Startup()
 {
@@ -59,27 +59,6 @@ void Kaotic_Alpha::Game::Run()
 					m_App->Close();
 				if(m_GameState == PLAYLEVEL)
 					ChangeState(QUITLEVEL);
-			}
-			//temp code to add and subtract lives
-			if ((Event.Type == sf::Event::KeyPressed) && (Event.Key.Code == sf::Key::N))
-			{
-				static float timer = 0;
-				if(timer >= 0){
-					m_LevelManager->GetPlayer()->GetHealthComponent()->RemoveLife();
-					timer = 100;
-				}
-				else
-					timer -= m_App->GetFrameTime();
-			}
-			if ((Event.Type == sf::Event::KeyPressed) && (Event.Key.Code == sf::Key::M))
-			{
-				static float timer2 = 0;
-				if(timer2 >= 0){
-					m_LevelManager->GetPlayer()->GetHealthComponent()->AddLife();
-					timer2 = 100;
-				}
-				else
-					timer2 -= m_App->GetFrameTime();
 			}
         }
 

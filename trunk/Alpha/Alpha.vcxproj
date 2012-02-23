@@ -81,6 +81,7 @@
     <ClInclude Include="inc\BoundingBox.h" />
     <ClInclude Include="inc\Camera.h" />
     <ClInclude Include="inc\GUIText.h" />
+    <ClInclude Include="inc\MyContactListener.h" />
     <ClInclude Include="inc\PhysicsWorld.h" />
     <ClInclude Include="inc\Components\Component.h" />
     <ClInclude Include="inc\Components\comp_Animation.h" />

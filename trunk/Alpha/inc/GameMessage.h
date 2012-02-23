@@ -14,7 +14,8 @@ namespace Kaotic_Alpha
 		{
 			COLLISION = 0,
 			INTERACTION,
-			STATECHANGE
+			STATECHANGE,
+			PLAYER_FOOTCONTACT
 		};
 
 		GameMessage(MSG_TYPE msgType)
