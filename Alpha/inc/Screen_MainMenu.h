@@ -1,11 +1,12 @@
 #ifndef SCREEN_MAIN_MENU_H
 #define SCREEN_MAIN_MENU_H
 
-#include "GUIButton.h"
 #include "GUIScreen.h"
+#include "GUIButton.h"
 #include "GUIImage.h"
 #include "GameMessage.h"
 #include "SoundManager.h"
+#include "Game.h"
 
 namespace Kaotic_Alpha
 {

@@ -2,8 +2,8 @@
 #include "GameMessage.h"
 #include "LevelManager.h"
 #include "GameLog.h"
-#include <SFML/System.hpp>
 
+#include <SFML/System.hpp>
 #include <Box2D/Box2D.h>
 
 //singletons
@@ -60,6 +60,27 @@ void Kaotic_Alpha::Game::Run()
 				if(m_GameState == PLAYLEVEL)
 					ChangeState(QUITLEVEL);
 			}
+			//temp code to add and subtract lives
+			if ((Event.Type == sf::Event::KeyPressed) && (Event.Key.Code == sf::Key::N))
+			{
+				static float timer = 0;
+				if(timer >= 0){
+					m_LevelManager->GetPlayer()->GetHealthComponent()->RemoveLife();
+					timer = 100;
+				}
+				else
+					timer -= m_App->GetFrameTime();
+			}
+			if ((Event.Type == sf::Event::KeyPressed) && (Event.Key.Code == sf::Key::M))
+			{
+				static float timer2 = 0;
+				if(timer2 >= 0){
+					m_LevelManager->GetPlayer()->GetHealthComponent()->AddLife();
+					timer2 = 100;
+				}
+				else
+					timer2 -= m_App->GetFrameTime();
+			}
         }
 
 		m_App->Clear();
@@ -93,20 +114,31 @@ void Kaotic_Alpha::Game::ChangeState(GAMESTATE newState)
 	switch(newState)
 	{
 	case MAINMENU:
-			GUIManager::GetSingleton()->PushScreen(new Kaotic_Alpha::Screen_MainMenu("Main Menu", m_App));
+		GUIManager::GetSingleton()->PushScreen(new Kaotic_Alpha::Screen_MainMenu("Main Menu", m_App));
 		break;
 	case LOADLEVEL:
-			GUIManager::GetSingleton()->PopScreen();
-			m_LevelManager->Startup();
-			m_LevelManager->LoadLevel(2);
-			ChangeState(PLAYLEVEL);
+		GUIManager::GetSingleton()->PopScreen();
+		GUIManager::GetSingleton()->PushScreen(new Kaotic_Alpha::Screen_Loading("Loading", m_App));
+			//force GUI update and render in order to display screen before level is loaded		
+			m_App->Clear();
+			GUIManager::GetSingleton()->UpdateScreens(m_App->GetFrameTime()); 
+			m_App->Display();
+		m_LevelManager->Startup();
+		m_LevelManager->LoadLevel(2);
+		std::cout << "Loaded" << std::endl;
+		ChangeState(PLAYLEVEL);
 		break;
 	case PLAYLEVEL:
+		GUIManager::GetSingleton()->PopScreen();
+		GUIManager::GetSingleton()->PushScreen(new Kaotic_Alpha::Screen_HUD("HUD", m_App, m_LevelManager->GetPlayer()));
+		m_App->Clear();
 		break;
 	case UNLOADLEVEL:
+		GUIManager::GetSingleton()->PopScreen();
 		m_LevelManager->ShutdownCurrentLevel();
 		break;
 	case QUITLEVEL:
+		GUIManager::GetSingleton()->PopScreen();
 		m_LevelManager->Shutdown();
 		ChangeState(MAINMENU);
 		break;

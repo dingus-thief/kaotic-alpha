@@ -35,9 +35,12 @@ void Kaotic_Alpha::GUIManager::PushScreen(GUIScreen* newScreen)
 
 void Kaotic_Alpha::GUIManager::PopScreen()
 {
-	m_Screens.at(m_Screens.size()-1)->Shutdown();
-	delete m_Screens.at(m_Screens.size()-1);
-	m_Screens.pop_back();
+	if(m_Screens.size() > 0){
+		m_Screens.at(m_Screens.size()-1)->Shutdown();
+		WriteLog << "Deleting " << m_Screens.at(m_Screens.size()-1)->GetName() << std::endl;
+		delete m_Screens.at(m_Screens.size()-1);
+		m_Screens.pop_back();
+	}
 }
 
 void Kaotic_Alpha::GUIManager::UpdateScreens(float deltaTime)
@@ -49,4 +52,14 @@ void Kaotic_Alpha::GUIManager::UpdateScreens(float deltaTime)
 
 		(*it)->Render();
 	}
+}
+
+void  Kaotic_Alpha::GUIManager::Debug_PrintScreenStack()
+{
+	WriteLog << "Screens" << std::endl;
+	WriteLog << "-------------------" << std::endl;
+	for(std::vector<Kaotic_Alpha::GUIScreen*>::iterator it = m_Screens.begin(); it != m_Screens.end(); ++it){
+		WriteLog << (*it)->GetName() << std::endl;
+	}
+	WriteLog << std::endl;
 }

@@ -97,6 +97,7 @@ namespace Kaotic_Alpha
 			}
 		}
 
+		GameObject* GetPlayer() const { return m_Player; }
 		int GetCurrentLevelNum() const { return m_CurrentLevelNum; }
 
 	private:

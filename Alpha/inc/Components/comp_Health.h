@@ -13,6 +13,7 @@ namespace Kaotic_Alpha
 			: m_IsAlive(true), m_MaxHealth(1)
 		{ 
 			ResetHealth();
+			m_NumLives = 5;
 		}
 		Comp_Health(int maxHealth)
 			: m_IsAlive(true), m_MaxHealth(maxHealth)
@@ -35,15 +36,29 @@ namespace Kaotic_Alpha
 				m_CurrentHealth += value;
 		}
 		void ResetHealth() { m_CurrentHealth = m_MaxHealth; }
-		void CheckDeath() { if(m_CurrentHealth == 0){ m_IsAlive = false;} else{ m_IsAlive = true;} }
+		void CheckDeath() 
+		{
+			if(m_CurrentHealth <= 0 && m_IsAlive == true){ 
+				m_IsAlive = false; --m_NumLives;
+			} 
+			else{ 
+				m_IsAlive = true;
+			} 
+		}
+		unsigned int GetCurrentLives() const { return m_NumLives; }
 		unsigned int GetCurrentHealth() const { return m_CurrentHealth; }
 		unsigned int GetMaxHealth() const { return m_MaxHealth; }
-		unsigned int SetMaxHealth(int value) { m_MaxHealth = value; ResetHealth(); }
+		void SetMaxHealth(int value) { m_MaxHealth = value; ResetHealth(); }
+
+		//temp
+		void AddLife(){ ++m_NumLives; }
+		void RemoveLife(){ --m_NumLives; }
 
 	private:
 		bool m_IsAlive;
 		unsigned int m_CurrentHealth;
 		unsigned int m_MaxHealth;
+		unsigned int m_NumLives;
 		//unsigned int m_TempHealthBonus (powerup)
 	};
 }

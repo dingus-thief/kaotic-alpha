@@ -80,6 +80,7 @@
     <ClInclude Include="inc\AnimatedSprite.h" />
     <ClInclude Include="inc\BoundingBox.h" />
     <ClInclude Include="inc\Camera.h" />
+    <ClInclude Include="inc\GUIText.h" />
     <ClInclude Include="inc\PhysicsWorld.h" />
     <ClInclude Include="inc\Components\Component.h" />
     <ClInclude Include="inc\Components\comp_Animation.h" />
@@ -105,6 +106,8 @@
     <ClInclude Include="inc\MessageSystem.h" />
     <ClInclude Include="inc\ObjectFactory.h" />
     <ClInclude Include="inc\Player.h" />
+    <ClInclude Include="inc\Screen_HUD.h" />
+    <ClInclude Include="inc\Screen_Loading.h" />
     <ClInclude Include="inc\Screen_MainMenu.h" />
     <ClInclude Include="inc\SoundManager.h" />
     <ClInclude Include="inc\SpriteAnimation.h" />

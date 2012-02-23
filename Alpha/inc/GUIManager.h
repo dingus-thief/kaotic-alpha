@@ -5,6 +5,8 @@
 #include "GUIScreen.h"
 
 #include "Screen_MainMenu.h"
+#include "Screen_Loading.h"
+#include "Screen_HUD.h"
 
 /*
 	GUIManager contains a vector of gui screens which acts as a stack of screens
@@ -21,6 +23,7 @@ namespace Kaotic_Alpha
 		void PopScreen();
 		void ClearScreens();
 		void UpdateScreens(float deltaTime);
+		void Debug_PrintScreenStack();
 
 		static Kaotic_Alpha::GUIManager* GetSingleton();
 		void Shutdown();

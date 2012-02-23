@@ -34,6 +34,7 @@ namespace Kaotic_Alpha
 		int GetUID() const { return m_UID; }
 		std::string GetName() const { return m_Name; }
 	
+		Comp_Health* GetHealthComponent() const { return m_HealthComp; }
 		Comp_Movable* GetMovableComponent() const { return m_MovableComp; }
 
 	protected:
