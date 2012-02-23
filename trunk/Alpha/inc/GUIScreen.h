@@ -5,6 +5,7 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include "Vector2.h"
+
 #include "GUIElement.h"
 
 namespace Kaotic_Alpha
@@ -24,8 +25,10 @@ namespace Kaotic_Alpha
 		virtual void Render(){}
 		virtual void Shutdown(){}
 
+		std::string GetName() const { return m_Name; }
+
 	protected:	
-		std::string m_Name;
+		std::string					m_Name;
 		sf::RenderWindow*			m_AppRef;
 		Vector2						m_Size;
 		Vector2						m_Position;

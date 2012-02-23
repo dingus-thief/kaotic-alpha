@@ -4,7 +4,6 @@
 #include "Vector2.h"
 #include "GUIElement.h"
 #include "MessageSystem.h"
-#include "Game.h"
 #include "ImageManager.h"
 
 namespace Kaotic_Alpha
@@ -22,7 +21,7 @@ namespace Kaotic_Alpha
 			m_CurrentSprite = sf::Sprite();
 			m_CurrentSprite.SetPosition(m_Position.X, m_Position.Y);
 			m_CurrentSprite.SetImage(m_BGImage);
-			m_Dimensions = Vector2(m_BGImage.GetWidth(), m_BGImage.GetHeight());
+			m_Dimensions = Vector2(static_cast<float>(m_BGImage.GetWidth()), static_cast<float>(m_BGImage.GetHeight()));
 		}
 		virtual ~GUIButton()
 		{

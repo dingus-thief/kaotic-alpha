@@ -16,6 +16,7 @@ void Kaotic_Alpha::Player::Startup()
 	GameObject::Startup();
 	m_RenderComp = new Comp_Renderable(m_AppRef);
 	m_AnimationComp = new Comp_Animation(m_RenderComp);
+	m_HealthComp = new Comp_Health();
 	m_MovableComp = new Comp_Movable();
 	m_PhysicsComp = new Comp_Physics(); 
 

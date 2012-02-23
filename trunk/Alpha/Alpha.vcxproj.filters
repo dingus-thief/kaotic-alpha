@@ -162,6 +162,15 @@
     <ClInclude Include="inc\PhysicsWorld.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="inc\Screen_HUD.h">
+      <Filter>Header Files\GUI\GUIScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\GUIText.h">
+      <Filter>Header Files\GUI\GUIElements</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Screen_Loading.h">
+      <Filter>Header Files\GUI\GUIScreens</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
